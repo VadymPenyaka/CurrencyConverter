@@ -1,24 +1,29 @@
 package org.projects;
 
+import org.projects.currency.CurencyService;
+import org.projects.exception.CustomException;
+
 import java.io.IOException;
-import java.util.Map;
 
 public class Main {
-    public static void main(String[] args) {
-        System.out.println("Hello world!");
-        CurencyService curencyService = new CurencyService();
-        Map<String, Double> ratesMap;
-        try {
-            ratesMap = curencyService.getRatesHttpGetRequset();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+    public static void main(String[] args) throws IOException, CustomException {
+//        System.out.println("Hello world!");
+//        CurencyService curencyService = new CurencyService();
+//        Map<String, Double> ratesMap;
+//        try {
+//            ratesMap = curencyService.getRatesHttpGetRequset();
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+//
+//        for (String nameOfCurency:ratesMap.keySet()) {
+//            System.out.print(nameOfCurency+"; ");
+//        }
 
-        for (String nameOfCurency:ratesMap.keySet()) {
-            if (nameOfCurency.equals("USD")) {
-                System.out.println(ratesMap.get(nameOfCurency));
-            }
-        }
+        CurencyService curencyService = new CurencyService();
+        curencyService.getRatesHttpGetRequset();
+        System.out.println(curencyService.convertToUAH(1, "USD"));
+
     }
 
 
