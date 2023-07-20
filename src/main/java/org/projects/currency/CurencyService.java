@@ -41,18 +41,18 @@ public class CurencyService {
                 paeseStringToLocalDate(jsonObject.get("exchangedate").getAsString()));
     }
 
-    public double convertToUAH (double amount, String currencyName) throws CustomException {
-        if (!currencyHashMap.containsKey(currencyName))
-            throw new CustomException("Incorect currency name"); //create custom exception
-        CurrencyData currencyData = (CurrencyData) currencyHashMap.get(currencyName);
+    public double convertToUAH (double amount, CurrencyData currencyData) {
         return currencyData.getRate()*amount;
     }
 
-    public double convertUAHToCurrency (double amount, String name) throws CustomException {
+    public double convertUAHToCurrency (double amount, CurrencyData currencyData) {
+        return 1/currencyData.getRate()*amount;
+    }
+
+    public CurrencyData getCurrencyDateByName (String name) throws CustomException {
         if (!currencyHashMap.containsKey(name))
             throw new CustomException("Incorect currency name"); //create custom exception
-        CurrencyData currencyData = (CurrencyData) currencyHashMap.get(name);
-        return 1/currencyData.getRate()*amount;
+        return (CurrencyData) currencyHashMap.get(name);
     }
 
 
