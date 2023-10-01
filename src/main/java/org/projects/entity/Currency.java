@@ -1,19 +1,19 @@
-package org.projects.currency;
+package org.projects.entity;
 
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class CurrencyData {
+public class Currency {
     private String name;
     private String ukrName;
     private double rate;
-    private LocalDate exchangedate;
+    private LocalDate exchangeDate;
 
-    public CurrencyData(String name, String ukrName, double rate, LocalDate exchangedate) {
+    public Currency(String name, String ukrName, double rate, LocalDate exchangedate) {
         this.name = name;
         this.ukrName = ukrName;
         this.rate = rate;
-        this.exchangedate = exchangedate;
+        this.exchangeDate = exchangedate;
     }
 
 
@@ -42,33 +42,31 @@ public class CurrencyData {
     }
 
     public LocalDate getExchangedate() {
-        return exchangedate;
+        return exchangeDate;
     }
 
     public void setExchangedate(LocalDate exchangedate) {
-        this.exchangedate = exchangedate;
+        this.exchangeDate = exchangedate;
     }
 
     @Override
     public String toString() {
-        return "Currency{" +
-                "name='" + name + '\'' +
-                ", ukrName='" + ukrName + '\'' +
+        return "name='" + name + '\'' +
+                ", Ukr. name='" + ukrName + '\'' +
                 ", rate=" + rate +
-                ", exchangedate=" + exchangedate +
-                '}';
+                ", exchange date=" + exchangeDate;
     }
 
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof CurrencyData that)) return false;
+        if (!(o instanceof Currency that)) return false;
 
         if (Double.compare(that.rate, rate) != 0) return false;
         if (!Objects.equals(name, that.name)) return false;
         if (!Objects.equals(ukrName, that.ukrName)) return false;
-        return Objects.equals(exchangedate, that.exchangedate);
+        return Objects.equals(exchangeDate, that.exchangeDate);
     }
 
     @Override
@@ -79,7 +77,7 @@ public class CurrencyData {
         result = 31 * result + (ukrName != null ? ukrName.hashCode() : 0);
         temp = Double.doubleToLongBits(rate);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
-        result = 31 * result + (exchangedate != null ? exchangedate.hashCode() : 0);
+        result = 31 * result + (exchangeDate != null ? exchangeDate.hashCode() : 0);
         return result;
     }
 }
